@@ -7,6 +7,10 @@ export class DataService{
 
     constructor(private httpClient:HttpClient){}
 
+    cargarEmpleados(){
+        return this.httpClient.get('https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos.json');
+    }
+
     guardarEmpleados(empleados:Empleado[]){
         this.httpClient.put('https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos.json',empleados)
         .subscribe(
