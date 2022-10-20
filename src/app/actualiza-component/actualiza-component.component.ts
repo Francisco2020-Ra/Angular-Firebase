@@ -15,7 +15,6 @@ export class ActualizaComponentComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private servicioEmpleado: ServicioEmpleadosService,
     private servicioDataEmpleado: EmpleadosService,
     private route: ActivatedRoute) {
 
@@ -66,7 +65,7 @@ export class ActualizaComponentComponent implements OnInit {
 
       this.router.navigate(['']);
     } else {
-      
+
       this.servicioDataEmpleado.eliminarEmpleado(this.indice);
 
       this.router.navigate(['']);

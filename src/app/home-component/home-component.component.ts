@@ -21,7 +21,7 @@ export class HomeComponentComponent {
       misEmpleados => {
         console.log(misEmpleados);
 
-        this.empleados=Object.values(misEmpleados);// los valores del objeto se guardan en el array de tipo empleados
+        this.empleados = Object.values(misEmpleados);// los valores del objeto se guardan en el array de tipo empleados
 
         this.servicioDataEmpleado.setEmpleados(this.empleados);
       }

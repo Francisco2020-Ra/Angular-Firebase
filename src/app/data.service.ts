@@ -3,21 +3,41 @@ import { Injectable } from '@angular/core';
 import { Empleado } from './empleado/empleado.model';
 
 @Injectable()
-export class DataService{
+export class DataService {
 
-    constructor(private httpClient:HttpClient){}
+    constructor(private httpClient: HttpClient) { }
 
-    cargarEmpleados(){
+    cargarEmpleados() {
         return this.httpClient.get('https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos.json');
     }
 
-    guardarEmpleados(empleados:Empleado[]){
-        this.httpClient.put('https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos.json',empleados)
-        .subscribe(
-            response => console.log("Se han guardado los empleados: " + response),
-            error => console.error("Error: " + error),
-            
-        );
+    guardarEmpleados(empleados: Empleado[]) {
+        this.httpClient.put('https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos.json', empleados)
+            .subscribe(
+                response => console.log("Se han guardado los empleados: " + response),
+                error => console.error("Error: " + error),
+
+            );
     }
 
+    actualizarEmpleado(indice: number, empleado: Empleado) {
+
+        let url = 'https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos/' + indice + '.json';
+
+        this.httpClient.put(url, empleado)
+            .subscribe(
+                response => console.log("Se ha actualizado el empleados: " + response),
+                error => console.error("Error: " + error),
+
+            );
+    }
+
+    eliminarEmpleado(indice: number) {
+        let url = 'https://mis-clientes-9b97e-default-rtdb.europe-west1.firebasedatabase.app/datos/' + indice + '.json';
+
+        this.httpClient.delete(url).subscribe(
+            response => console.log("Se ha eliminado el empleado"),
+            error => console.error("Error: " + error),
+        )
+    }
 }
